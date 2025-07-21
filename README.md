@@ -158,7 +158,7 @@ Next, you need to define an `extern` function with the following signature:
 ```rust
 use getrandom::Error;
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 unsafe extern "Rust" fn __getrandom_v03_custom(
     dest: *mut u8,
     len: usize,
@@ -188,7 +188,7 @@ fn my_entropy_source(buf: &mut [u8]) -> Result<(), getrandom::Error> {
     Ok(())
 }
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 unsafe extern "Rust" fn __getrandom_v03_custom(
     dest: *mut u8,
     len: usize,
@@ -209,7 +209,7 @@ use the following custom backend, which always returns the "unsupported" error:
 ```rust
 use getrandom::Error;
 
-#[no_mangle]
+#[unsafe(no_mangle)]
 unsafe extern "Rust" fn __getrandom_v03_custom(
     dest: *mut u8,
     len: usize,
